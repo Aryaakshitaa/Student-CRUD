@@ -1,0 +1,47 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+  <h1 class="h3 mb-0 text-gray-800">Student List</h1>
+  <a routerLink="/student-form" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    <i class="fa fa-plus fa-sm text-white-50 mr-2"></i>Add Student
+  </a>
+</div>
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h2 class="m-0 font-weight-bold text-primary">OUR STUDENTS</h2>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Roll</th>
+            <th>Batch</th>
+            <th>Name</th>
+            <th>Domain</th>
+            <th>Email</th>
+            <th>Action</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let student of studentList">
+            <td>{{student.id}}</td>
+            <td>{{student.roll}}</td>
+            <td>{{student.batch}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.domain}}</td>
+            <td>{{student.email}}</td>
+            <td>
+            <button [routerLink]="['/student-edit',student.id]" class="btn btn-primary btn-sm mr-2">Edit</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteData(student.id)">Delete</button>
+            </td>
+            <td>{{student.phoneNumber}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>

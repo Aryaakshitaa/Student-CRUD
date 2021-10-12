@@ -1,0 +1,47 @@
+<form [formGroup]="attendanceForm" class="mt-5">
+  <div class="d-flex mb-5">
+    <h5 class="mr-3 mt-2">Mark Attendance For </h5>
+    <input type="date" formControlName="attendancedate" value={{date}} [(ngModel)]="date" (change)="changeDate()">
+    <button class="btn btn-primary ml-5" [disabled]="saved" (click)="saveAttendance()">Save</button>
+  </div>
+  <div *ngIf="saved==true">
+    <h6 [ngClass]="{'saveddata':saved}">Saved Attendance Successfully !</h6>
+  </div>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h2 class="m-0 font-weight-bold text-primary">STUDENTS RECORD</h2>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Present</th>
+              <th>Roll</th>
+              <th>Batch</th>
+              <th>Name</th>
+              <th>Domain</th>
+              <th>Date</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of studentList let i=index">
+              <td>{{student.id}}</td>
+              <td><input type="checkbox" name="attendance" [checked]="student.status" value={{student}} (change)="changeStatus($event.target,student)"></td>
+              <td>{{student.roll}}</td>
+              <td>{{student.batch}}</td>
+              <td>{{student.name}}</td>
+              <td>{{student.domain}}</td>
+              <td>{{date}}</td>
+              <td>{{student.email}}</td>
+              <td>{{student.phoneNumber}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</form>
